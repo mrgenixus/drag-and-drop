@@ -145,19 +145,30 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   // Setup the dnd listeners.
   var dropZone = document.getElementById('available');
   dropZone.addEventListener('dragover', handleDragOver, false);
+
+  setup_indicators = function(target){
+
+  }
+
   $(dropZone).find('li').each(function(i,v){
   	this.addEventListener('dragenter', handleDragEnter, false);
-  	this.addEventListener('dragleave', handleDragOut, false);
+  	dummy_item.each(function(){
+  		this.addEventListener('dragleave', handleDragOut);
+  	})
+  	
   })
- 
+
+  //dropZone.addEventListener('dragleave', handleDragOut);
   dropZone.addEventListener('drop', handleFileSelect, false);
 }
  
    function handleDragEnter(evt){
+   	console.log("entered")
   	dummy_item.insertBefore(evt.target)
   }
   function handleDragOut(evt) {
  	dummy_item.remove();
+ 	console.log("left")
   }
 </script>
 	
